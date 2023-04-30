@@ -18,7 +18,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/Logo">
+            android:src="@drawable/logo">
 
         </ImageView>
         <TextView
@@ -76,6 +76,7 @@
             android:text="I forgot my password"
             android:layout_gravity="center"
             android:clickable="true"
+            android:onClick="iconClicked"
             />
         <TextView
             android:id="@+id/register_now_text"
@@ -96,6 +97,57 @@
             android:textSize="15sp"
             android:text="Register"
             />
+        <TextView
+            android:id="@+id/sign_up_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/p_green"
+            android:text="Sign up with:"
+            android:layout_gravity="center"
+            android:layout_marginVertical="30dp"
+            android:clickable="false"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/fb_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/facebook"
+                android:layout_marginHorizontal="10dp"
+                android:clickable="true"
+                android:onClick="iconClicked">
+            </ImageView>
+            <ImageView
+                android:id="@+id/google_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/fb_login"
+                android:layout_gravity="center"
+                android:src="@drawable/google"
+                android:layout_marginHorizontal="10dp"
+                android:clickable="true"
+                android:onClick="iconClicked">
+            </ImageView>
+            <ImageView
+                android:id="@+id/apple_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/google_login"
+                android:layout_gravity="center"
+                android:src="@drawable/apple"
+                android:layout_marginHorizontal="10dp"
+                android:clickable="true"
+                android:onClick="iconClicked">
+            </ImageView>
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

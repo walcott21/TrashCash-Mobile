@@ -28,7 +28,7 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".MainPage"
+            android:name=".MainPageActivity"
             android:exported="false" />
         <activity
             android:name=".DashBoard"
@@ -49,7 +49,7 @@
             android:name=".RegisterPage"
             android:exported="false" />
         <activity
-            android:name=".LoginPage"
+            android:name=".LoginPageActivity"
             android:exported="true"
             android:theme="@style/LoginPage">
             <intent-filter>

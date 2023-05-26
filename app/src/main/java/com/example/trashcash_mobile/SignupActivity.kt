@@ -26,6 +26,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
 
+data class ValidationResult(
+    val status: Boolean,
+    val errorMessage: String
+)
+
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
@@ -39,7 +44,6 @@ class SignupActivity : AppCompatActivity() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
 
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
-
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -55,42 +59,66 @@ class SignupActivity : AppCompatActivity() {
             val confirmPassword = binding.editTextConfirmPassword.text.toString()
 
             val signupData = SignupData(name, email, address, password, confirmPassword)
+            val validationResult = validateSignupData(signupData)
 
-            if(password == confirmPassword){
+            if(validationResult.status){
                 progressBar.visibility = View.VISIBLE
-                apiInterface.createSignup(signupData).enqueue(object : Callback<ApiResponse> {
-                    override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                        // Handle API response on success
-                        progressBar.visibility = View.GONE
-                        if (response.isSuccessful) {
-                            //val signupResponse = response.body()
-                            Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
-
-                            val userDataManager = UserDataManager(MyApp.appContext)
-                            userDataManager.address = address
-                            userDataManager.email = email
-                            userDataManager.name = name
-
-                            var intent = Intent(this@SignupActivity,MainPageActivity::class.java )
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Failed to communicate with the server", Toast.LENGTH_SHORT).show()
-                        progressBar.visibility = View.GONE
-                    }
-                })
-
+                createNewUser(signupData)
+                progressBar.visibility = View.GONE
             }else{
-                Toast.makeText(applicationContext, "The password must match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, validationResult.errorMessage, Toast.LENGTH_SHORT).show()
             }
-
-
         }
     }
+
+    private fun createNewUser(signupData:SignupData){
+        apiInterface.createSignup(signupData).enqueue(object : Callback<ApiResponse> {
+            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                if (response.isSuccessful) {
+                    //val signupResponse = response.body()
+                    Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+
+                    val userDataManager = UserDataManager(MyApp.appContext)
+                    userDataManager.address = signupData.address
+                    userDataManager.email = signupData.email
+                    userDataManager.name = signupData.name
+
+                    var intent = Intent(this@SignupActivity,MainPageActivity::class.java )
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                Toast.makeText(applicationContext, "Failed to communicate with the server", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+
+    private fun validateSignupData(signupData: SignupData): ValidationResult {
+        if (signupData.password != signupData.confirmPassword) {
+            return ValidationResult(false, "Passwords do not match.")
+        }
+
+        if (!isEmailValid(signupData.email)) {
+            return ValidationResult(false, "Invalid email format.")
+        }
+
+        if (signupData.address.isNullOrBlank() || signupData.name.isNullOrBlank()) {
+            return ValidationResult(false, "Name and address cannot be empty.")
+        }
+
+        return ValidationResult(true, "") // Validation successful
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
+        return emailRegex.matches(email)
+    }
+
 }
 
 

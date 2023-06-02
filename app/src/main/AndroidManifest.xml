@@ -11,10 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrashCashMobile"
         tools:targetApi="31"
-        android:name=".models.MyApp" >
+        android:name=".models.MyApp">
         <activity
             android:name=".SignupActivity"
+            tools:targetApi="31"
+            android:name=".models.MyApp"
+            android:exported="false">
+        <activity
+            android:name=".Historical"
             android:exported="false" />
+        <activity
+            android:name=".Settings"/>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

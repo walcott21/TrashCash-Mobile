@@ -1,11 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
+        <entry key="app/src/main/res/layout/activity_historical.xml" value="0.3463654006736867" />
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.26934347843778306" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/historical_item.xml" value="0.1" />
       </map>
     </option>
   </component>

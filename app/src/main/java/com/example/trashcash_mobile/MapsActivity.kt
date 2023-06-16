@@ -20,15 +20,21 @@ class MapsActivity : AppCompatActivity() {
         mapView.setTileSource(TileSourceFactory.MAPNIK)
         mapView.setMultiTouchControls(true)
 
+        val lisbonCoordinates = GeoPoint(38.7223, -9.1393)
+        mapView.controller.setZoom(12.0)
+        mapView.controller.setCenter(lisbonCoordinates)
+
         addCollectionPoints()
     }
 
     private fun addCollectionPoints() {
         // Add your collection points here
         val collectionPoints = listOf(
-            CollectionPoint("Collection Point 1", 37.7749, -122.4194),
-            CollectionPoint("Collection Point 2", 37.7739, -122.4325),
-            CollectionPoint("Collection Point 3", 37.7706, -122.4357)
+            CollectionPoint("Collection Point 1", 38.7223, -9.1393),
+            CollectionPoint("Collection Point 2", 38.7241, -9.1374),
+            CollectionPoint("Collection Point 3", 38.7256, -9.1423),
+            CollectionPoint("Collection Point 4", 38.7198, -9.1376),
+            CollectionPoint("Collection Point 5", 38.7209, -9.1352)
         )
 
         for (point in collectionPoints) {

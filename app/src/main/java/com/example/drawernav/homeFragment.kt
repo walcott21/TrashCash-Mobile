@@ -5,55 +5,74 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [homeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class homeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var mapView: MapView
+    private lateinit var fabSearch: FloatingActionButton
+    private lateinit var bottomAppBar: BottomAppBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        Configuration.getInstance().userAgentValue = requireContext().packageName
+
+        mapView = view.findViewById(R.id.mapView)
+        mapView.setTileSource(TileSourceFactory.MAPNIK)
+        mapView.setMultiTouchControls(true)
+
+        val lisbonCoordinates = GeoPoint(38.7223, -9.1393)
+        mapView.controller.setZoom(12.0)
+        mapView.controller.setCenter(lisbonCoordinates)
+
+        addCollectionPoints()
+
+        fabSearch = view.findViewById(R.id.fab_search)
+        fabSearch.setOnClickListener {
+            // Handle search button click
+            // Example: Toast.makeText(requireContext(), "Search clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        //bottomAppBar = view.findViewById(R.id.bottomAppBar)
+        // Set up the bottom app bar
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment homeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            homeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun addCollectionPoints() {
+        // Add your collection points here
+        val collectionPoints = listOf(
+            CollectionPoint("Collection Point 1", 38.7223, -9.1393),
+            CollectionPoint("Collection Point 2", 38.7241, -9.1374),
+            CollectionPoint("Collection Point 3", 38.7256, -9.1423),
+            CollectionPoint("Collection Point 4", 38.7198, -9.1376),
+            CollectionPoint("Collection Point 5", 38.7209, -9.1352)
+        )
+
+        for (point in collectionPoints) {
+            val marker = Marker(mapView)
+            marker.position = GeoPoint(point.latitude, point.longitude)
+            marker.setOnMarkerClickListener { marker, mapView ->
+                // Print a message to the console
+                println("Marker clicked: ${marker.title}")
+
+                // Return false to indicate that the event is not consumed
+                false
             }
+
+            marker.title = point.name
+            mapView.overlays.add(marker)
+        }
     }
+
+    data class CollectionPoint(val name: String, val latitude: Double, val longitude: Double)
 }

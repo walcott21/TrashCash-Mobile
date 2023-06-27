@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/purple_200"
-    tools:context=".homeFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_search"
+        android:layout_width="109dp"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:textStyle="bold"
         android:layout_gravity="center"
-        android:textSize="50dp"/>
+        android:layout_margin="@dimen/cardview_compat_inset_shadow"
+        android:src="@drawable/baseline_search_24"
+        app:layout_anchor="@+id/frame_layout"
+        app:layout_anchorGravity="bottom|center" />
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

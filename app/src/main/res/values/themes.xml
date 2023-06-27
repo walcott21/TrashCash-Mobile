@@ -13,8 +13,6 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-<<<<<<< Updated upstream
-=======
 
     <style name="Theme.DrawerNav.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -24,5 +22,4 @@
     <style name="Theme.DrawerNav.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.DrawerNav.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
->>>>>>> Stashed changes
 </resources>

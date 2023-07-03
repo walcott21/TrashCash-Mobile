@@ -1,23 +1,17 @@
 package com.example.drawernav
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RewardsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RewardsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -33,20 +27,46 @@ class RewardsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rewards, container, false)
+        val view = inflater.inflate(R.layout.fragment_rewards, container, false)
+
+        // Handle the click event for reward boxes
+        val reward1Box: View = view.findViewById(R.id.reward1Box)
+        reward1Box.setOnClickListener {
+            showConfirmationDialog()
+        }
+
+        val reward2Box: View = view.findViewById(R.id.reward2Box)
+        reward2Box.setOnClickListener {
+            showConfirmationDialog()
+        }
+
+        val reward3Box: View = view.findViewById(R.id.reward3Box)
+        reward3Box.setOnClickListener {
+            showConfirmationDialog()
+        }
+
+        val reward4Box: View = view.findViewById(R.id.reward4Box)
+        reward4Box.setOnClickListener {
+            showConfirmationDialog()
+        }
+
+        return view
+    }
+
+    private fun showConfirmationDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Confirmation")
+            .setMessage("Are you sure you want to exchange your points for this reward?")
+            .setPositiveButton("Yes") { dialog, which ->
+                // Handle the positive button click (e.g., perform the reward exchange)
+            }
+            .setNegativeButton("No") { dialog, which ->
+                // Handle the negative button click (e.g., do nothing)
+            }
+            .show()
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RewardsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             RewardsFragment().apply {

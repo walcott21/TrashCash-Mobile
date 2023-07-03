@@ -1,16 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TrashListFragment">
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Fragment Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Trash List"
         android:textStyle="bold"
+        android:textSize="24sp"
         android:layout_gravity="center"
-        android:textSize="30dp"/>
-</FrameLayout>
+        android:padding="16dp" />
+
+    <!-- Description Text -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The recyclable trash you traded is the following:"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:padding="8dp" />
+
+    <!-- Trash Box 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/reward_box"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Type of Trash -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Plastic"
+            android:textSize="18sp" />
+
+        <!-- Amount in KG -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2.5 KG"
+            android:textSize="18sp"
+            android:gravity="center" />
+
+        <!-- Date -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2023-07-02"
+            android:textSize="18sp"
+            android:gravity="end" />
+
+    </LinearLayout>
+
+    <!-- Trash Box 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/reward_box"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Type of Trash -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Metal"
+            android:textSize="18sp" />
+
+        <!-- Amount in KG -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1.8 KG"
+            android:textSize="18sp"
+            android:gravity="center" />
+
+        <!-- Date -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2023-07-01"
+            android:textSize="18sp"
+            android:gravity="end" />
+
+    </LinearLayout>
+
+    <!-- Trash Box 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/reward_box"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Type of Trash -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Paper"
+            android:textSize="18sp" />
+
+        <!-- Amount in KG -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0.5 KG"
+            android:textSize="18sp"
+            android:gravity="center" />
+
+        <!-- Date -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2023-07-03"
+            android:textSize="18sp"
+            android:gravity="end" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

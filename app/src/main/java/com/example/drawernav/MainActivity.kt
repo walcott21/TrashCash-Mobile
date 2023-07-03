@@ -1,5 +1,6 @@
 package com.example.drawernav
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        replaceFragment(homeFragment(), getString(R.string.nav_home_title))
+
     }
 
     private fun replaceFragment(fragment: Fragment,title: String){

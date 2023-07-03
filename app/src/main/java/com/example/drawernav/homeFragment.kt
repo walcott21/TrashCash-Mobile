@@ -15,8 +15,7 @@ import org.osmdroid.views.overlay.Marker
 
 class homeFragment : Fragment() {
     private lateinit var mapView: MapView
-    private lateinit var fabSearch: FloatingActionButton
-    private lateinit var bottomAppBar: BottomAppBar
+    private lateinit var searchView: androidx.appcompat.widget.SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,14 +35,18 @@ class homeFragment : Fragment() {
 
         addCollectionPoints()
 
-        fabSearch = view.findViewById(R.id.fab_search)
-        fabSearch.setOnClickListener {
-            // Handle search button click
-            // Example: Toast.makeText(requireContext(), "Search clicked", Toast.LENGTH_SHORT).show()
-        }
+        searchView = view.findViewById(R.id.search_view)
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Handle search query submission
+                return true
+            }
 
-        //bottomAppBar = view.findViewById(R.id.bottomAppBar)
-        // Set up the bottom app bar
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Handle search query change
+                return true
+            }
+        })
 
         return view
     }

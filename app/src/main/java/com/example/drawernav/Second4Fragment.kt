@@ -28,13 +28,7 @@ private var _binding: FragmentSecond4Binding? = null
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_Second4Fragment_to_First3Fragment)
-        }
-    }
 override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

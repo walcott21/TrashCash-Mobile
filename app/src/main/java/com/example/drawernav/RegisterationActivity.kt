@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import com.example.drawernav.LoginActivity
 import com.example.drawernav.MainActivity
 import com.example.drawernav.R
 import com.example.trashcash_mobile.models.MyApp
+import com.example.trashcash_mobile.network.ApiClient
 import com.example.trashcash_mobile.network.ApiInterface
 import com.example.trashcash_mobile.network.ApiResponse
 import com.example.trashcash_mobile.network.SignupData
@@ -40,6 +42,7 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+        apiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
 
         etFullName = findViewById(R.id.et_full_name)
         etUsername = findViewById(R.id.et_username)
@@ -55,10 +58,6 @@ class RegistrationActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
             registerUser(progressBar)
         }
-
-        tvLogin.setOnClickListener {
-            navigateToLogin()
-        }
     }
 
     private fun registerUser(progressBar: ProgressBar ) {
@@ -70,7 +69,8 @@ class RegistrationActivity : AppCompatActivity() {
         val confirmPassword = etConfirmPassword.text.toString()
         val password = etPassword.text.toString()
 
-        val signupData = SignupData(fullName,username,phoneNumber, email, address, password, confirmPassword)
+//        val signupData = SignupData(fullName,username,phoneNumber, email, address, password, confirmPassword)
+        val signupData = SignupData("fullName","username","67543254656", "email@email.com", "address", "password", "password")
         val validationResult = validateSignupData(signupData)
 
         if(validationResult.status){
@@ -84,27 +84,36 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun createNewUser(signupData:SignupData){
-        apiInterface.createSignup(signupData).enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+        try {
+            apiInterface.createSignup(signupData).enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    if (response.isSuccessful) {
+                        val signupResponse = response.body()
+                        val leo = signupResponse?.status
+//                        etAddress.setText(leo?.toString())
+                        etAddress.setText("aaaaaaaaaa")
+                        Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
 
-                    val userDataManager = UserDataManager(MyApp.appContext)
-                    userDataManager.address = signupData.address
-                    userDataManager.email = signupData.email
-                    userDataManager.name = signupData.name
+                        val userDataManager = UserDataManager(MyApp.appContext)
+                        userDataManager.address = signupData.address
+                        userDataManager.email = signupData.email
+                        userDataManager.name = signupData.name
 
-                    val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
+//                        val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
+//                        startActivity(intent)
+                    } else {
+                        Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Toast.makeText(applicationContext, "Failed to communicate with the server", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Toast.makeText(applicationContext, "Failed to communicate with the server", Toast.LENGTH_SHORT).show()
+                }
+            })
+
+        } catch (e: Exception) {
+            print(e)
+        }
     }
 
     private fun validateSignupData(signupData: SignupData): ValidationResult {
@@ -121,12 +130,6 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         return ValidationResult(true, "") // Validation successful
-    }
-
-    private fun navigateToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     private fun isEmailValid(email: String): Boolean {

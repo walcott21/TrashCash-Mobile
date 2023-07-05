@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_registeration.xml" value="0.17391304347826086" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.17391304347826086" />
+        <entry key="app/src/main/res/layout/content_signup.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/popup_collection_point.xml" value="0.15070921985815602" />
       </map>
     </option>

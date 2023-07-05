@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "https://trashcash-signup.free.beeceptor.com"
+    private const val BASE_URL = "https://trashcash-signup.free.beeceptor.com/"
 
     private val retrofit: Retrofit by lazy {
         val client = OkHttpClient.Builder().build()

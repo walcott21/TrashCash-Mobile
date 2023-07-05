@@ -1,6 +1,7 @@
 package com.example.trashcash_mobile.network
 
 
+import com.example.drawernav.models.LoginData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -13,7 +14,7 @@ interface ApiInterface {
     fun createSignup(@Body userData: SignupData): Call<ApiResponse>
 
     @POST("login")
-    fun login(@Body userData: SignupData): Call<ApiResponse>
+    fun login(@Body user: LoginData): Call<ApiResponse>
 
     @GET("collectionpoints")
     fun getCollectionPoints(@Body userData: SignupData): Call<ApiResponse>

@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
-import com.example.drawernav.LoginActivity
-import com.example.drawernav.MainActivity
 import com.example.drawernav.R
 import com.example.trashcash_mobile.models.MyApp
 import com.example.trashcash_mobile.network.ApiClient
@@ -80,7 +77,6 @@ class RegistrationActivity : AppCompatActivity() {
         }else{
             Toast.makeText(applicationContext, validationResult.errorMessage, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun createNewUser(signupData:SignupData){
@@ -90,9 +86,8 @@ class RegistrationActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val signupResponse = response.body()
                         val leo = signupResponse?.status
-//                        etAddress.setText(leo?.toString())
-                        etAddress.setText("aaaaaaaaaa")
-                        Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                        etAddress.setText(leo?.toString())
+                        Toast.makeText(applicationContext, "Success $leo", Toast.LENGTH_SHORT).show()
 
                         val userDataManager = UserDataManager(MyApp.appContext)
                         userDataManager.address = signupData.address

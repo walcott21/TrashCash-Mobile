@@ -14,280 +14,123 @@
         android:layout_gravity="center"
         android:layout_marginBottom="32dp" />
 
-    <!-- Top Five Scoreboard -->
+    <!-- Your Points -->
+    <TextView
+        android:id="@+id/your_points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Points"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Rank 1 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <!-- First Place -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/rank1_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="Rank 1 Name"
+            android:textSize="18sp" />
 
-            <!-- Order -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1."
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <!-- Icon -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/face"
-                android:scaleType="centerCrop" />
-
-            <!-- Name -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="John Doe"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp" />
-
-            <!-- Points -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-
-        </LinearLayout>
-
-        <!-- Second Place -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/rank1_points"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:text="Rank 1 Points"
+            android:textSize="18sp" />
 
-            <!-- Order -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2."
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <!-- Icon -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/face"
-                android:scaleType="centerCrop" />
-
-            <!-- Name -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jane Smith"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp" />
-
-            <!-- Points -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-
-        </LinearLayout>
-
-        <!-- Third Place -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/rank1_position"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <!-- Order -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3."
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <!-- Icon -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/face"
-                android:scaleType="centerCrop" />
-
-            <!-- Name -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sarah Johnson"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp" />
-
-            <!-- Points -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3500"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-
-        </LinearLayout>
-
-        <!-- Fourth Place -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <!-- Order -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4."
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <!-- Icon -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/face"
-                android:scaleType="centerCrop" />
-
-            <!-- Name -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Michael Johnson"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp" />
-
-            <!-- Points -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3200"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-
-        </LinearLayout>
-
-        <!-- Fifth Place -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <!-- Order -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5."
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <!-- Icon -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/face"
-                android:scaleType="centerCrop" />
-
-            <!-- Name -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Emily Davis"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp" />
-
-            <!-- Points -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-
-        </LinearLayout>
-
-        <!-- Horizontal Line -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"/>
-
+            android:text="Rank 1 Position"
+            android:textSize="18sp" />
     </LinearLayout>
 
-    <!-- Score Summary -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You have a total of 95 points."
-        android:textSize="20sp"
-        android:layout_marginTop="32dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your position in the global rank is 999."
-        android:textSize="20sp"
-        android:layout_marginTop="16dp" />
-
-    <!-- Share on Social Media -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Share on social media:"
-        android:textSize="20sp"
-        android:layout_marginTop="32dp" />
-
+    <!-- Rank 2 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/facebook"
-            android:scaleType="centerInside"
-            android:layout_marginEnd="16dp" />
+        <TextView
+            android:id="@+id/rank2_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rank 2 Name"
+            android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/twitter"
-            android:scaleType="centerInside"
-            android:layout_marginEnd="16dp" />
+        <TextView
+            android:id="@+id/rank2_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rank 2 Points"
+            android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/instagram"
-            android:scaleType="centerInside" />
-
+        <TextView
+            android:id="@+id/rank2_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rank 2 Position"
+            android:textSize="18sp" />
     </LinearLayout>
+
+    <!-- Rank 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rank3_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rank 3 Name"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/rank3_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rank 3 Points"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/rank3_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rank 3 Position"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/noScoreboardTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No scoreboard available"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Error TextView -->
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error occurred while fetching scoreboard"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+
 
 </LinearLayout>

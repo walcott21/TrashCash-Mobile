@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             apiInterface.login(logindata).enqueue(
                 object : Callback<ApiResponse> {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                        if (response.isSuccessful) {
+//                      if (response.isSuccessful) {
                             val loginResponse = response.body()
                             val token = loginResponse?.message
                             val token2 = loginResponse?.status
@@ -56,9 +56,9 @@ class LoginActivity : AppCompatActivity() {
 
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             startActivity(intent)
-                        } else {
-                            Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
-                        }
+//                        } else {
+//                            Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
+//                        }
                     }
 
                     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {

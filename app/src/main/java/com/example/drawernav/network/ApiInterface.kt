@@ -26,7 +26,7 @@ interface ApiInterface {
     fun getTrashList(@Body userData: SignupData): Call<ApiResponse>
 
     @GET("scoreboard")
-    fun getScoreboardData(@Body userData: SignupData): Call<ApiResponse>
+    fun getScoreboardData(): Call<ApiResponse>
 
     @GET("historicalRewards")
     fun getHistoricalRewards(@Body userData: SignupData): Call<ApiResponse>

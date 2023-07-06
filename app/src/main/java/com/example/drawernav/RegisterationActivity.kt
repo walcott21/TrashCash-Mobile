@@ -1,13 +1,12 @@
 // RegistrationActivity.kt
 package com.example.myapplication
-import UserDataManager
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import com.example.drawernav.R
-import com.example.trashcash_mobile.models.MyApp
+import com.example.drawernav.databinding.ActivitySignupBinding
+import com.example.trashcash_mobile.models.UserApp
 import com.example.trashcash_mobile.network.ApiClient
 import com.example.trashcash_mobile.network.ApiInterface
 import com.example.trashcash_mobile.network.ApiResponse
@@ -36,9 +35,13 @@ class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var apiInterface: ApiInterface
 
+    private lateinit var binding: ActivitySignupBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+//
         apiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
 
         etFullName = findViewById(R.id.et_full_name)
@@ -53,7 +56,9 @@ class RegistrationActivity : AppCompatActivity() {
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
 
         btnRegister.setOnClickListener {
-            registerUser(progressBar)
+            val signupData = SignupData("fullName","username","67543254656", "email@email.com", "address", "password", "password")
+            createNewUser(signupData)
+//            registerUser(progressBar)
         }
     }
 
@@ -89,10 +94,9 @@ class RegistrationActivity : AppCompatActivity() {
                         etAddress.setText(leo?.toString())
                         Toast.makeText(applicationContext, "Success $leo", Toast.LENGTH_SHORT).show()
 
-                        val userDataManager = UserDataManager(MyApp.appContext)
-                        userDataManager.address = signupData.address
-                        userDataManager.email = signupData.email
-                        userDataManager.name = signupData.name
+                        UserApp.address = signupData.address
+                        UserApp.email = signupData.email
+                        UserApp.name = signupData.name
 
 //                        val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
 //                        startActivity(intent)

@@ -20,7 +20,7 @@ interface ApiInterface {
     fun getCollectionPoints(@Body userData: SignupData): Call<ApiResponse>
 
     @GET("rewards")
-    fun getRewards(@Body userData: SignupData): Call<ApiResponse>
+    fun getRewards(): Call<ApiResponse>
 
     @GET("trashlist")
     fun getTrashList(@Body userData: SignupData): Call<ApiResponse>

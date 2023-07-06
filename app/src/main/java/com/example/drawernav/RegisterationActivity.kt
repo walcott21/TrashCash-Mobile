@@ -1,9 +1,11 @@
 // RegistrationActivity.kt
 package com.example.myapplication
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import com.example.drawernav.MainActivity
 import com.example.drawernav.R
 import com.example.drawernav.databinding.ActivitySignupBinding
 import com.example.trashcash_mobile.models.UserApp
@@ -71,8 +73,7 @@ class RegistrationActivity : AppCompatActivity() {
         val confirmPassword = etConfirmPassword.text.toString()
         val password = etPassword.text.toString()
 
-//        val signupData = SignupData(fullName,username,phoneNumber, email, address, password, confirmPassword)
-        val signupData = SignupData("fullName","username","67543254656", "email@email.com", "address", "password", "password")
+        val signupData = SignupData(fullName,username,phoneNumber, email, address, password, confirmPassword)
         val validationResult = validateSignupData(signupData)
 
         if(validationResult.status){
@@ -91,15 +92,14 @@ class RegistrationActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val signupResponse = response.body()
                         val leo = signupResponse?.status
-                        etAddress.setText(leo?.toString())
-                        Toast.makeText(applicationContext, "Success $leo", Toast.LENGTH_SHORT).show()
+
 
                         UserApp.address = signupData.address
                         UserApp.email = signupData.email
                         UserApp.name = signupData.name
 
-//                        val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
-//                        startActivity(intent)
+                        val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
+                        startActivity(intent)
                     } else {
                         Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
                     }

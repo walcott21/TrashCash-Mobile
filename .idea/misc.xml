@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/content_signup.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/fragment_rewards_historical.xml" value="0.2125" />
+        <entry key="app/src/main/res/layout/fragment_score.xml" value="0.464818763326226" />
         <entry key="app/src/main/res/layout/fragment_trash_list.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/historical_item.xml" value="0.21145833333333333" />
         <entry key="app/src/main/res/layout/popup_collection_point.xml" value="0.15070921985815602" />

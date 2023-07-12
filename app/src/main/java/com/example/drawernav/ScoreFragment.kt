@@ -88,6 +88,7 @@ class ScoreFragment : Fragment() {
         val rank3PositionTextView: TextView? = view?.findViewById(R.id.rank3_position)
         val noScoreboardTextView: TextView? = view?.findViewById(R.id.noScoreboardTextView)
         val errorTextView: TextView? = view?.findViewById(R.id.errorTextView)
+        val yourPointsView: TextView? = view?.findViewById(R.id.yourPoints)
 
         if (scoreboard != null) {
             yourPointsTextView?.text = "Your Points: ${scoreboard.yourPoints}"
@@ -96,22 +97,24 @@ class ScoreFragment : Fragment() {
                 val rank1 = scoreboard.globalRanking[0]
                 rank1NameTextView?.text = rank1.name
                 rank1PointsTextView?.text = "Points: ${rank1.points}"
-                rank1PositionTextView?.text = "Position: ${rank1.position}"
+                rank1PositionTextView?.text = " - : ${rank1.position}"
             }
 
             if (scoreboard.globalRanking.size >= 2) {
                 val rank2 = scoreboard.globalRanking[1]
                 rank2NameTextView?.text = rank2.name
                 rank2PointsTextView?.text = "Points: ${rank2.points}"
-                rank2PositionTextView?.text = "Position: ${rank2.position}"
+                rank2PositionTextView?.text = " - : ${rank2.position}"
             }
 
             if (scoreboard.globalRanking.size >= 3) {
                 val rank3 = scoreboard.globalRanking[2]
                 rank3NameTextView?.text = rank3.name
                 rank3PointsTextView?.text = "Points: ${rank3.points}"
-                rank3PositionTextView?.text = "Position: ${rank3.position}"
+                rank3PositionTextView?.text = " - : ${rank3.position}"
             }
+
+            yourPointsView?.text = scoreboard.yourPoints.toString()
 
             // Hide the "No Scoreboard" TextView and error TextView
             noScoreboardTextView?.visibility = View.GONE

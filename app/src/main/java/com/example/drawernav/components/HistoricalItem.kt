@@ -26,7 +26,6 @@ class MyAdapter(private val dataList: List<RewardHistory>) : RecyclerView.Adapte
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(data: RewardHistory) {
-            // Atualize os elementos do item com os dados relevantes
             val nameTextView = itemView.findViewById<TextView>(R.id.name_historical_reward)
             val pointsTextView = itemView.findViewById<TextView>(R.id.date_historical_reward)
             nameTextView.text = data.name

@@ -76,7 +76,7 @@ class ScoreFragment : Fragment() {
 
 
     private fun displayScoreboard(scoreboard: ScoreboardEntry?) {
-        val yourPointsTextView: TextView? = view?.findViewById(R.id.your_points)
+        val yourPointsTextView: TextView? = view?.findViewById(R.id.global_ranking_is)
         val rank1NameTextView: TextView? = view?.findViewById(R.id.rank1_name)
         val rank1PointsTextView: TextView? = view?.findViewById(R.id.rank1_points)
         val rank1PositionTextView: TextView? = view?.findViewById(R.id.rank1_position)
@@ -89,32 +89,34 @@ class ScoreFragment : Fragment() {
         val noScoreboardTextView: TextView? = view?.findViewById(R.id.noScoreboardTextView)
         val errorTextView: TextView? = view?.findViewById(R.id.errorTextView)
         val yourPointsView: TextView? = view?.findViewById(R.id.yourPoints)
+        val yourGlobalRankingView: TextView? = view?.findViewById(R.id.ur_global_ranking)
 
         if (scoreboard != null) {
-            yourPointsTextView?.text = "Your Points: ${scoreboard.yourPoints}"
+            yourPointsTextView?.text = "The current global ranking is:"
 
             if (scoreboard.globalRanking.isNotEmpty()) {
                 val rank1 = scoreboard.globalRanking[0]
-                rank1NameTextView?.text = rank1.name
+                rank1NameTextView?.text = " ${rank1.name}"
                 rank1PointsTextView?.text = "Points: ${rank1.points}"
-                rank1PositionTextView?.text = " - : ${rank1.position}"
+                rank1PositionTextView?.text = "${rank1.position} - "
             }
 
             if (scoreboard.globalRanking.size >= 2) {
                 val rank2 = scoreboard.globalRanking[1]
-                rank2NameTextView?.text = rank2.name
+                rank2NameTextView?.text = " ${rank2.name}"
                 rank2PointsTextView?.text = "Points: ${rank2.points}"
-                rank2PositionTextView?.text = " - : ${rank2.position}"
+                rank2PositionTextView?.text = "${rank2.position} - "
             }
 
             if (scoreboard.globalRanking.size >= 3) {
                 val rank3 = scoreboard.globalRanking[2]
-                rank3NameTextView?.text = rank3.name
+                rank3NameTextView?.text = " ${rank3.name}"
                 rank3PointsTextView?.text = "Points: ${rank3.points}"
-                rank3PositionTextView?.text = " - : ${rank3.position}"
+                rank3PositionTextView?.text = "${rank3.position} - "
             }
 
             yourPointsView?.text = scoreboard.yourPoints.toString()
+            yourGlobalRankingView?.text = scoreboard.positionGlobalRank.toString()
 
             // Hide the "No Scoreboard" TextView and error TextView
             noScoreboardTextView?.visibility = View.GONE
@@ -140,7 +142,7 @@ class ScoreFragment : Fragment() {
 
     private fun displayNoScoreboard() {
         val noScoreboardTextView: TextView? = view?.findViewById(R.id.noScoreboardTextView)
-        val yourPointsTextView: TextView? = view?.findViewById(R.id.your_points)
+        val yourPointsTextView: TextView? = view?.findViewById(R.id.global_ranking_is)
         val rank1NameTextView: TextView? = view?.findViewById(R.id.rank1_name)
         val rank1PointsTextView: TextView? = view?.findViewById(R.id.rank1_points)
         val rank1PositionTextView: TextView? = view?.findViewById(R.id.rank1_position)
@@ -171,7 +173,7 @@ class ScoreFragment : Fragment() {
     private fun displayError() {
         val errorTextView: TextView? = view?.findViewById(R.id.errorTextView)
         val noScoreboardTextView: TextView? = view?.findViewById(R.id.noScoreboardTextView)
-        val yourPointsTextView: TextView? = view?.findViewById(R.id.your_points)
+        val yourPointsTextView: TextView? = view?.findViewById(R.id.global_ranking_is)
         val rank1NameTextView: TextView? = view?.findViewById(R.id.rank1_name)
         val rank1PointsTextView: TextView? = view?.findViewById(R.id.rank1_points)
         val rank1PositionTextView: TextView? = view?.findViewById(R.id.rank1_position)

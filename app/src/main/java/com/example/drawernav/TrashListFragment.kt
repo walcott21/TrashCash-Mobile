@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.drawernav.components.MyAdapter
+import com.example.drawernav.components.TrashItemAdapter
 import com.example.drawernav.models.RewardsModel
 import com.example.drawernav.models.TrashList
 import com.example.trashcash_mobile.network.ApiClient
@@ -28,6 +32,8 @@ class TrashListFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var apiInterface: ApiInterface
+    private lateinit var rootView: View
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +50,9 @@ class TrashListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         loadData()
-        return inflater.inflate(R.layout.fragment_trash_list, container, false)
+        rootView = inflater.inflate(R.layout.fragment_rewards_historical, container, false)
+        recyclerView = rootView.findViewById(R.id.recyclerView)
+        return rootView
     }
 
     private fun loadData(){
@@ -65,7 +73,12 @@ class TrashListFragment : Fragment() {
     }
 
     private fun showData(trashList:List<TrashList>?){
-
+        if (trashList!== null){
+            val adapter = TrashItemAdapter(trashList)
+            recyclerView.adapter = adapter
+            val context = requireContext()
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        }
     }
 
     companion object {

@@ -1,0 +1,37 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/reward_box"
+    android:padding="16dp"
+    android:layout_marginBottom="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Type of Trash -->
+    <TextView
+        android:id="@+id/trash_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Plastic"
+        android:textSize="18sp" />
+
+    <!-- Amount in KG -->
+    <TextView
+        android:id="@+id/trash_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="2.5 KG"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/trash_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="2023-07-02"
+        android:textSize="18sp"
+        android:gravity="end" />
+
+</LinearLayout>

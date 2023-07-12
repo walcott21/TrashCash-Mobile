@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.drawernav.models.RewardsModel
+import com.example.drawernav.models.TrashList
+import com.example.trashcash_mobile.network.ApiClient
+import com.example.trashcash_mobile.network.ApiInterface
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +27,7 @@ class TrashListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var apiInterface: ApiInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +35,7 @@ class TrashListFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        apiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
     }
 
     override fun onCreateView(
@@ -34,7 +43,29 @@ class TrashListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        loadData()
         return inflater.inflate(R.layout.fragment_trash_list, container, false)
+    }
+
+    private fun loadData(){
+        apiInterface.getTrashList().enqueue(
+            object : Callback<List<TrashList>> {
+                override fun onResponse(call: Call<List<TrashList>>, response: Response<List<TrashList>>) {
+                    if (response.isSuccessful) {
+                        val trashList = response.body()
+                        showData(trashList)
+                    }
+                }
+
+                override fun onFailure(call: Call<List<TrashList>>, t: Throwable) {
+//                    Toast.makeText(applicationContext, "Failed to communicate with the server", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
+
+    private fun showData(trashList:List<TrashList>?){
+
     }
 
     companion object {

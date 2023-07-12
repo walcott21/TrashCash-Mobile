@@ -2,11 +2,20 @@ package com.example.drawernav
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.drawernav.models.RewardsModel
+import com.example.trashcash_mobile.network.ApiClient
+import com.example.trashcash_mobile.network.ApiInterface
+import com.example.trashcash_mobile.network.ApiResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -14,6 +23,7 @@ private const val ARG_PARAM2 = "param2"
 class RewardsFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var apiInterface: ApiInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +31,7 @@ class RewardsFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        apiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
     }
 
     override fun onCreateView(
@@ -29,7 +40,7 @@ class RewardsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_rewards, container, false)
 
-        // Handle the click event for reward boxes
+        loadData(view)
         val reward1Box: View = view.findViewById(R.id.reward1Box)
         reward1Box.setOnClickListener {
             showConfirmationDialog()
@@ -50,6 +61,30 @@ class RewardsFragment : Fragment() {
             showConfirmationDialog()
         }
 
+        return view
+    }
+
+    private fun loadData(view:View){
+        apiInterface.getRewards().enqueue(
+            object : Callback<List<RewardsModel>> {
+                override fun onResponse(call: Call<List<RewardsModel>>, response: Response<List<RewardsModel>>) {
+                    if (response.isSuccessful) {
+                        val rewardsList = response.body()
+                        showData(rewardsList, view)
+                    }
+                }
+
+                override fun onFailure(call: Call<List<RewardsModel>>, t: Throwable) {
+//                    Toast.makeText(applicationContext, "Failed to communicate with the server", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        )
+    }
+
+    private fun showData(rewardsList:List<RewardsModel>?, view:View):View?{
+        //TODO create data with rewardsList
+        // Handle the click event for reward boxes
         return view
     }
 

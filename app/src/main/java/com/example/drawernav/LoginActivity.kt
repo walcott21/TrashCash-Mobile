@@ -14,7 +14,6 @@ import com.example.trashcash_mobile.network.ApiResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.widget.*
 
 
 
@@ -47,18 +46,17 @@ class LoginActivity : AppCompatActivity() {
             apiInterface.login(logindata).enqueue(
                 object : Callback<ApiResponse> {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-//                      if (response.isSuccessful) {
-                            val loginResponse = response.body()
-                            val token = loginResponse?.message
-                            val token2 = loginResponse?.status
-                            val token3 = loginResponse?.data
-//                            val tokenType = loginResponse?.type
-
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-//                        } else {
-//                            Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
-//                        }
+                      if (response.isSuccessful) {
+                            val isLoginSuccess = response.body()?.status
+                            if(isLoginSuccess==true){
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
+                            }else{
+                                Toast.makeText(applicationContext, "Wrong Credentials", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                          Toast.makeText(applicationContext, "Failed to register", Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {

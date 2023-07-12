@@ -15,6 +15,9 @@ import com.example.trashcash_mobile.network.ApiResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -44,31 +47,33 @@ class ScoreFragment : Fragment() {
 
     private fun fetchScoreboardData() {
         val apiInterface = ApiClient.getApiClient().create(ApiInterface::class.java)
-        apiInterface.getScoreboardData().enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-//                if (response.isSuccessful) {
-//                    val apiResponse = response.body()
-                    var rank = Rank("Name",222,1)
-                    var listRank = listOf(rank, rank, rank)
-                    val apiResponse = ScoreboardEntry(323,77,listRank)
+        apiInterface.getScoreboardData().enqueue(object : Callback<ScoreboardEntry> {
+            override fun onResponse(call: Call<ScoreboardEntry>, response: Response<ScoreboardEntry>) {
+                if (response.isSuccessful) {
+                    val apiResponse = response.body()
                     if (apiResponse != null) {
-                        val scoreboard = apiResponse as ScoreboardEntry
-                        displayScoreboard(scoreboard)
+                        val scoreboard = apiResponse
+                        if (scoreboard != null) {
+                            displayScoreboard(scoreboard)
+                        } else {
+                            displayNoScoreboard()
+                        }
                     } else {
-                        displayNoScoreboard()
+                        displayError()
                     }
-//                } else {
-//                    Log.e("ScoreFragment", "API Error: ${response.message()}")
-//                    displayError()
-//                }
+                } else {
+                    Log.e("ScoreFragment", "API Error: ${response.message()}")
+                    displayError()
+                }
             }
 
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ScoreboardEntry>, t: Throwable) {
                 Log.e("ScoreFragment", "API Failure: ${t.message}")
                 displayError()
             }
         })
     }
+
 
     private fun displayScoreboard(scoreboard: ScoreboardEntry?) {
         val yourPointsTextView: TextView? = view?.findViewById(R.id.your_points)

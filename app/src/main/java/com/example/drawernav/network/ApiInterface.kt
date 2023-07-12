@@ -1,7 +1,7 @@
 package com.example.trashcash_mobile.network
 
 
-import com.example.drawernav.models.LoginData
+import com.example.drawernav.models.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,16 +20,16 @@ interface ApiInterface {
     fun getCollectionPoints(@Body userData: SignupData): Call<ApiResponse>
 
     @GET("rewards")
-    fun getRewards(): Call<ApiResponse>
+    fun getRewards(): Call<List<RewardsModel>>
 
     @GET("trashlist")
-    fun getTrashList(@Body userData: SignupData): Call<ApiResponse>
+    fun getTrashList(): Call<List<TrashList>>
 
     @GET("scoreboard")
-    fun getScoreboardData(): Call<ApiResponse>
+    fun getScoreboardData(): Call<ScoreboardEntry>
 
-    @GET("historicalRewards")
-    fun getHistoricalRewards(@Body userData: SignupData): Call<ApiResponse>
+    @GET("rewards_history")
+    fun getHistoricalRewards(): Call<List<RewardHistory>>
 
     @POST("collectPrize")
     fun collectPrize(@Body userData: SignupData): Call<ApiResponse>

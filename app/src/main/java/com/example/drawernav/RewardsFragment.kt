@@ -9,6 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.drawernav.components.MyAdapter
+import com.example.drawernav.components.RewardItemAdpater
 import com.example.drawernav.models.RewardsModel
 import com.example.trashcash_mobile.network.ApiClient
 import com.example.trashcash_mobile.network.ApiInterface
@@ -24,6 +28,8 @@ class RewardsFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var apiInterface: ApiInterface
+    private lateinit var rootView: View
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,39 +44,19 @@ class RewardsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_rewards, container, false)
-
-        loadData(view)
-        val reward1Box: View = view.findViewById(R.id.reward1Box)
-        reward1Box.setOnClickListener {
-            showConfirmationDialog()
-        }
-
-        val reward2Box: View = view.findViewById(R.id.reward2Box)
-        reward2Box.setOnClickListener {
-            showConfirmationDialog()
-        }
-
-        val reward3Box: View = view.findViewById(R.id.reward3Box)
-        reward3Box.setOnClickListener {
-            showConfirmationDialog()
-        }
-
-        val reward4Box: View = view.findViewById(R.id.reward4Box)
-        reward4Box.setOnClickListener {
-            showConfirmationDialog()
-        }
-
-        return view
+        rootView = inflater.inflate(R.layout.fragment_rewards_historical, container, false)
+        recyclerView = rootView.findViewById(R.id.recyclerView)
+        loadData()
+        return rootView
     }
 
-    private fun loadData(view:View){
+    private fun loadData(){
         apiInterface.getRewards().enqueue(
             object : Callback<List<RewardsModel>> {
                 override fun onResponse(call: Call<List<RewardsModel>>, response: Response<List<RewardsModel>>) {
                     if (response.isSuccessful) {
                         val rewardsList = response.body()
-                        showData(rewardsList, view)
+                        showData(rewardsList)
                     }
                 }
 
@@ -82,10 +68,13 @@ class RewardsFragment : Fragment() {
         )
     }
 
-    private fun showData(rewardsList:List<RewardsModel>?, view:View):View?{
-        //TODO create data with rewardsList
-        // Handle the click event for reward boxes
-        return view
+    private fun showData(rewardsList:List<RewardsModel>?){
+        if (rewardsList!== null){
+            val adapter = RewardItemAdpater(rewardsList)
+            recyclerView.adapter = adapter
+            val context = requireContext()
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        }
     }
 
     private fun showConfirmationDialog() {

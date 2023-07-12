@@ -1,0 +1,38 @@
+<LinearLayout android:id="@+id/reward1Box"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/reward_box"
+    android:padding="12dp"
+    android:layout_marginBottom="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:onClick="showConfirmationDialog"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/airpodsmax"
+        android:contentDescription="Reward Icon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp">
+
+        <TextView
+            android:id="@+id/name_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reward 1"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/points_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Points required: 10"
+            android:textSize="14sp"/>
+    </LinearLayout>
+</LinearLayout>

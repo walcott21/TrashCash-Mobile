@@ -44,7 +44,7 @@ class RewardsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(R.layout.fragment_rewards_historical, container, false)
+        rootView = inflater.inflate(R.layout.fragment_rewards, container, false)
         recyclerView = rootView.findViewById(R.id.recyclerView)
         loadData()
         return rootView

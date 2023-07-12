@@ -50,7 +50,7 @@ class TrashListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         loadData()
-        rootView = inflater.inflate(R.layout.fragment_rewards_historical, container, false)
+        rootView = inflater.inflate(R.layout.fragment_trash_list, container, false)
         recyclerView = rootView.findViewById(R.id.recyclerView)
         return rootView
     }
